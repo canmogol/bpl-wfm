@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LandingPage</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/user.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header"><a class="navbar-brand navbar-link" href="#"><i class="glyphicon glyphicon-phone"></i>Mobil Uygulamayi Indirin</a>
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav navbar-right" style="padding-top:0;">
+                    <li class="active" role="presentation"><a href="landing.html">Konumlar </a></li>
+                    <li role="presentation"><a href="zaman-cizelgesi.html">Zaman Cizelgesi</a></li>
+                    <li role="presentation">
+                        <a href="#" style="padding:0;padding-top:5px;"> <img class="img-circle" src="assets/img/xs-me.jpg" width="40px"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <div class="row" style="padding-top:6px;padding-bottom:5px;height:50px;margin-right:auto;margin-left:auto;width:970px;margin-top:10px;">
+            <div class="col-md-12" style="width:970px;float:right;">
+                <input type="text" placeholder="Is Yeri Adiyla Arayin" style="/*float:right;*/width:250px;margin-right:10px;">
+                <input type="text" placeholder="Konum Belirterek Arayin" style="/*float:right;*/width:250px;margin-right:10px;">
+                <select name="KonumTipi" style="/*float:right;*/width:220px;margin-right:10px;height:25px;">
+                    <optgroup label="Konum Tipi">
+                        <option value="">Kuafor</option>
+                        <option value="">Guzellik Salonu</option>
+                        <option value="">Depo</option>
+                    </optgroup>
+                </select><span style="float:left;">Mesafe </span>
+                <input type="range" name="Mesafe" style="width:120px;float:left;margin:5px;margin-right:17px;">
+            </div>
+            <div class="col-md-12" style="width:970px;float:right;margin-top:10px;"><span>Baslangic: </span>
+                <input type="date" name="Baslangic" value="12/12/2016" style="width:160px;margin-right:18px;"><span>Bitis: </span>
+                <input type="date" name="Baslangic" value="12/12/2016" style="width:160px;margin-right:10px;">
+                <select name="KonumTipi" style="/*float:right;*/width:250px;margin-right:10px;height:25px;">
+                    <optgroup label="Kullanicilar">
+                        <option value="">Can</option>
+                        <option value="">Ural</option>
+                        <option value="">John</option>
+                    </optgroup>
+                </select>
+                <button class="btn btn-info btn-xs" type="button" style="/*float:right;*/width:220px;">Ara </button>
+            </div>
+        </div>
+        <div class="container" style="margin-top:35px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <iframe allowfullscreen="" frameborder="0" width="100%" height="500" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtO38uFfqgIn3pJTBywTi9vNJUZxeuZ84&amp;q=Ankara%2C+Turkey&amp;zoom=12"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="testimonials"></section>
+    <section class="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Kozmetik Konumlari</h2>
+                    <p>Kozmetik, bir kimseyi daha çekici hale getirmek ya da görünüm sorunlarını gidermek için kullanılan ürünleri, uygulanan bakım ve tedavileri kapsayan bir kavram. Kozmetiğin bir alt alanı olan makyaj; ruj, maskara ve fondöten gibi yüzü
+                        ve çevresini güzelleştirmek veya farklı bir görünüm vermek için uygulanan kozmetik ürünleri ve işlemleri kapsar. </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="row icon-features">
+                        <div class="col-xs-4 icon-feature"><i class="glyphicon glyphicon-cloud"></i>
+                            <p>Bulut Bilisime Hazir</p>
+                        </div>
+                        <div class="col-xs-4 icon-feature"><i class="glyphicon glyphicon-piggy-bank"></i>
+                            <p>Kazanc Saglar </p>
+                        </div>
+                        <div class="col-xs-4 icon-feature"><i class="glyphicon glyphicon-fire"></i>
+                            <p>Kararli ve Dayanikli</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h5>Kozmetik Konum Zaman Cizelgesi © 2017</h5></div>
+                <div class="col-sm-6 social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
