@@ -1,5 +1,5 @@
-# Cosmetics
-Cosmetics Locations and Time sheet Application
+# BPL - WFM
+Locations and Time sheet Application
 
 ### Mobile Applications
 ##### iOS
