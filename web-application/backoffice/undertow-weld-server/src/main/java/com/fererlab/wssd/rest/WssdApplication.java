@@ -10,6 +10,7 @@ public class WssdApplication extends Application {
     public Set<Class<?>> getClasses() {
         HashSet<Class<?>> classes = new HashSet<>();
         classes.add(HelloResource.class);
+        classes.add(LoginResource.class);
         return classes;
     }
 
