@@ -51,6 +51,8 @@ public class Server {
 
         server.deploy(deploymentInfo);
 
+        // STATIC_CONTENT_PATH might be a VM parameter or environment variable
+        // ex: -DSTATIC_CONTENT_PATH=/home/can/projects/canmogol/bpl-wfm/web-application/backoffice/webapp/
         server.addResourcePrefixPath(
             "/",
             Handlers.resource(
