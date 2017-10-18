@@ -18,52 +18,52 @@ import java.util.logging.Logger;
 
 public class Server {
 
-  public static final String STATIC_CONTENT_PATH = "STATIC_CONTENT_PATH";
+    public static final String STATIC_CONTENT_PATH = "STATIC_CONTENT_PATH";
 
-  private static final Logger logger = Logger.getLogger(Server.class.getName());
+    private static final Logger logger = Logger.getLogger(Server.class.getName());
 
-  static {
-    final String loggingProperties = "logging.properties";
-    try {
-      LogManager.getLogManager().readConfiguration(Server.class.getClassLoader().getResourceAsStream(loggingProperties));
-    } catch (IOException e) {
-      logger.severe(String.format("could not load logging file: %1s", loggingProperties));
+    static {
+        final String loggingProperties = "logging.properties";
+        try {
+            LogManager.getLogManager().readConfiguration(Server.class.getClassLoader().getResourceAsStream(loggingProperties));
+        } catch (IOException e) {
+            logger.severe(String.format("could not load logging file: %1s", loggingProperties));
+        }
     }
-  }
 
-  public static void main(final String[] args) {
+    public static void main(final String[] args) {
 
-    UndertowJaxrsServer server = new UndertowJaxrsServer();
+        UndertowJaxrsServer server = new UndertowJaxrsServer();
 
-    ResteasyDeployment resteasyDeployment = new ResteasyDeployment();
-    resteasyDeployment.setInjectorFactoryClass("org.jboss.resteasy.cdi.CdiInjectorFactory");
-    resteasyDeployment.setApplicationClass(WssdApplication.class.getName());
+        ResteasyDeployment resteasyDeployment = new ResteasyDeployment();
+        resteasyDeployment.setInjectorFactoryClass("org.jboss.resteasy.cdi.CdiInjectorFactory");
+        resteasyDeployment.setApplicationClass(WssdApplication.class.getName());
 
-    WebSocketDeploymentInfo webSocketDeploymentInfo = new WebSocketDeploymentInfo();
-    webSocketDeploymentInfo.addEndpoint(PublishSubscribeResource.class);
+        WebSocketDeploymentInfo webSocketDeploymentInfo = new WebSocketDeploymentInfo();
+        webSocketDeploymentInfo.addEndpoint(PublishSubscribeResource.class);
 
-    DeploymentInfo deploymentInfo = server.undertowDeployment(resteasyDeployment, "/");
-    deploymentInfo.setClassLoader(Server.class.getClassLoader());
-    deploymentInfo.setContextPath("/api");
-    deploymentInfo.setDeploymentName("cdi deployment name cannot be null");
-    deploymentInfo.addListeners(Servlets.listener(org.jboss.weld.environment.servlet.Listener.class));
-    deploymentInfo.addServletContextAttribute(WebSocketDeploymentInfo.ATTRIBUTE_NAME, webSocketDeploymentInfo);
+        DeploymentInfo deploymentInfo = server.undertowDeployment(resteasyDeployment, "/");
+        deploymentInfo.setClassLoader(Server.class.getClassLoader());
+        deploymentInfo.setContextPath("/api");
+        deploymentInfo.setDeploymentName("cdi deployment name cannot be null");
+        deploymentInfo.addListeners(Servlets.listener(org.jboss.weld.environment.servlet.Listener.class));
+        deploymentInfo.addServletContextAttribute(WebSocketDeploymentInfo.ATTRIBUTE_NAME, webSocketDeploymentInfo);
 
-    server.deploy(deploymentInfo);
+        server.deploy(deploymentInfo);
 
-    server.addResourcePrefixPath(
-      "/",
-      Handlers.resource(
-        new PathResourceManager(
-          Paths.get(System.getProperty("user.home")),
-          100
-        )
-      ).setDirectoryListingEnabled(true)
-    );
+        server.addResourcePrefixPath(
+            "/",
+            Handlers.resource(
+                new PathResourceManager(
+                    Paths.get(System.getProperty(STATIC_CONTENT_PATH)),
+                    100
+                )
+            ).setDirectoryListingEnabled(true)
+        );
 
-    server.start();
+        server.start();
 
-  }
+    }
 
 
 }
