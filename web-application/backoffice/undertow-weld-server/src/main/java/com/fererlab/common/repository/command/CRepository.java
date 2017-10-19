@@ -1,4 +1,4 @@
-package com.fererlab.common.repository;
+package com.fererlab.common.repository.command;
 
 
 import com.fererlab.common.model.Model;

@@ -1,14 +1,14 @@
-package com.fererlab.wfm.rest.dto;
+package com.fererlab.wfm.service.model;
 
-public class LoginResponseDTO {
+public class LoginResponseModel {
 
     private String result;
     private String name;
 
-    public LoginResponseDTO() {
+    public LoginResponseModel() {
     }
 
-    public LoginResponseDTO(String result, String name) {
+    public LoginResponseModel(String result, String name) {
         this.result = result;
         this.name = name;
     }

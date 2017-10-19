@@ -194,6 +194,12 @@
             <artifactId>h2</artifactId>
             <version>1.4.196</version>
         </dependency>
+        <!-- Orika Map/Factory/Converter -->
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>1.5.2</version>
+        </dependency>
     </dependencies>
 
 

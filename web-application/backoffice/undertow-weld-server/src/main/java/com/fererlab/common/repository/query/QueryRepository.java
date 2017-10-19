@@ -1,14 +1,14 @@
-package com.fererlab.common.repository;
+package com.fererlab.common.repository.query;
 
 
 import com.fererlab.common.model.BaseModel;
 import com.fererlab.common.model.Model;
 import com.fererlab.common.property.Property;
+import com.fererlab.common.repository.builder.QueryBuilder;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -23,16 +23,14 @@ public abstract class QueryRepository<T extends Model<PK>, PK extends Serializab
     @Property("persistence.unit")
     private String persistenceUnit;
 
-    private static EntityManagerFactory entityManagerFactory;
+    @Inject
+    private EntityManagerFactory entityManagerFactory;
+
+    protected EntityManager getEntityManager() {
+        return entityManagerFactory.createEntityManager();
+    }
 
     private Class<T> entityClass;
-
-    public EntityManagerFactory getEntityManagerFactory() {
-        if (entityManagerFactory == null) {
-            entityManagerFactory = Persistence.createEntityManagerFactory(persistenceUnit);
-        }
-        return entityManagerFactory;
-    }
 
     @SuppressWarnings("unchecked")
     public QueryRepository() {
@@ -41,7 +39,7 @@ public abstract class QueryRepository<T extends Model<PK>, PK extends Serializab
 
     @Override
     public T findById(PK id) {
-        EntityManager entityManager = getEntityManagerFactory().createEntityManager();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         T t = entityManager.find(entityClass, id);
         if (t != null && t instanceof BaseModel && ((BaseModel) t).isDeleted()) {
             // this entity is marked as deleted, return null
@@ -64,7 +62,7 @@ public abstract class QueryRepository<T extends Model<PK>, PK extends Serializab
 
     @Override
     public List<T> findAll(Integer index, Integer numberOfRecords) {
-        EntityManager entityManager = getEntityManagerFactory().createEntityManager();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(entityClass);
         Root<T> root = criteriaQuery.from(entityClass);
@@ -77,10 +75,14 @@ public abstract class QueryRepository<T extends Model<PK>, PK extends Serializab
         return list;
     }
 
+    public QueryBuilder<T> query() {
+        return new QueryBuilder<>(entityClass, entityManagerFactory);
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public Long count() {
-        EntityManager entityManager = getEntityManagerFactory().createEntityManager();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
         Root<T> root = criteriaQuery.from(entityClass);

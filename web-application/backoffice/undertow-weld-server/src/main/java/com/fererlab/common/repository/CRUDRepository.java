@@ -1,6 +1,8 @@
 package com.fererlab.common.repository;
 
 import com.fererlab.common.model.Model;
+import com.fererlab.common.repository.command.CRepository;
+import com.fererlab.common.repository.query.QRepository;
 
 import java.io.Serializable;
 import java.util.List;

@@ -2,11 +2,17 @@ package com.fererlab.wfm.rest;
 
 import com.fererlab.wfm.rest.dto.LoginRequestDTO;
 import com.fererlab.wfm.rest.dto.LoginResponseDTO;
+import com.fererlab.wfm.service.LoginService;
+import com.fererlab.wfm.service.model.LoginRequestModel;
+import com.fererlab.wfm.service.model.LoginResponseModel;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import ma.glasnost.orika.MapperFacade;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -18,6 +24,13 @@ import javax.ws.rs.core.MediaType;
 @Produces({MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_JSON})
 public class LoginResource {
+
+    @Inject
+    LoginService service;
+
+    @Inject
+    @Named("UserMapper")
+    MapperFacade mapperFacade;
 
     @ApiOperation(
         value = "logs in a user",
@@ -31,9 +44,11 @@ public class LoginResource {
         }
     )
     @POST
-    public LoginResponseDTO sayHi(LoginRequestDTO model) {
-        System.out.println(model);
-        return new LoginResponseDTO("success", "Can MOGOL");
+    public LoginResponseDTO login(LoginRequestDTO loginRequestDTO) {
+        LoginRequestModel loginRequestModel = mapperFacade.map(loginRequestDTO, LoginRequestModel.class);
+        LoginResponseModel loginResponseModel = service.login(loginRequestModel);
+        LoginResponseDTO loginResponseDTO = mapperFacade.map(loginResponseModel, LoginResponseDTO.class);
+        return loginResponseDTO;
     }
 
 }
