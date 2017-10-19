@@ -14,7 +14,7 @@ public class PublishSubscribeResource {
 
     // ************************************************************************
     // OPEN 3 INCOGNITO WINDOWS IN CHROME TO URL
-    // http://localhost:8080/restful-server/pubsub.jsp
+    // http://localhost:8080/mvvm/websocket.html
     // ************************************************************************
 
     private static final Logger logger = Logger.getLogger(PublishSubscribeResource.class.getName());
