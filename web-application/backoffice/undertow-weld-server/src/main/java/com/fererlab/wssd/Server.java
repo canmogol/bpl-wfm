@@ -1,7 +1,6 @@
 package com.fererlab.wssd;
 
 import com.fererlab.wssd.rest.PublishSubscribeResource;
-import com.fererlab.wssd.rest.WssdApplication;
 import io.undertow.Handlers;
 import io.undertow.server.handlers.resource.PathResourceManager;
 import io.undertow.servlet.Servlets;
@@ -52,7 +51,8 @@ public class Server {
         server.deploy(deploymentInfo);
 
         // STATIC_CONTENT_PATH might be a VM parameter or environment variable
-        // ex: -DSTATIC_CONTENT_PATH=/home/can/projects/canmogol/bpl-wfm/web-application/backoffice/webapp/
+        // ex: -DSTATIC_CONTENT_PATH=/home/can/projects/canmogol/bpl-wfm/web-application/backoffice/web/
+        // C:\canm\garb\bpl-wfm\web-application\backoffice\web
         server.addResourcePrefixPath(
             "/",
             Handlers.resource(

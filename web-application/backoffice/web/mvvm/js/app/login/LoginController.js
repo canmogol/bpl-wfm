@@ -93,7 +93,7 @@ function LoginController() {
         var loginRequestModel = this.loginViewModel.createLoginRequestModel();
 
         // create model
-        var model = new XhrModel('api/login');
+        var model = new XhrModel('/api/login');
         model.method = 'POST';
         model.headers['Content-Type'] = 'application/json';
         model.data = JSON.stringify(loginRequestModel);
