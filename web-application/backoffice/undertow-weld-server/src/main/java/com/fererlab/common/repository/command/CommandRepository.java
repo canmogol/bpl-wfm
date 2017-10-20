@@ -73,6 +73,8 @@ public abstract class CommandRepository<T extends Model<PK>, PK extends Serializ
             entityManager.remove(t);
         }
         entityManager.flush();
+        entityManager.getTransaction().commit();
+
     }
 
 }
