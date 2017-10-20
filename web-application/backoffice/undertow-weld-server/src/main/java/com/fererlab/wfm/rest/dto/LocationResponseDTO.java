@@ -1,6 +1,6 @@
 package com.fererlab.wfm.rest.dto;
 
-public class LocationResponceDTO {
+public class LocationResponseDTO {
     private Integer id;
     private String name;
     private String address;

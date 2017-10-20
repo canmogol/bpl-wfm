@@ -1,6 +1,5 @@
 package com.fererlab.wfm.rest;
 
-import com.fererlab.wfm.model.HelloModel;
 import com.fererlab.wfm.service.HelloService;
 
 import javax.inject.Inject;

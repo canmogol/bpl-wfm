@@ -1,21 +1,24 @@
 package com.fererlab.wfm.service;
 
 
+import com.fererlab.common.interceptor.MethodLoggingInterceptor;
 import com.fererlab.common.property.Property;
 import com.fererlab.wfm.model.LocationModel;
 import com.fererlab.wfm.repository.LocationCRUDRepository;
 import com.fererlab.wfm.service.model.AddLocationRequestModel;
 import com.fererlab.wfm.service.model.AddLocationResponseModel;
-import com.fererlab.wfm.service.model.LocationResponceModel;
+import com.fererlab.wfm.service.model.LocationResponseModel;
 import ma.glasnost.orika.MapperFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.interceptor.Interceptors;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Interceptors({MethodLoggingInterceptor.class})
 public class LocationService {
 
     private final static Logger logger = LoggerFactory.getLogger(LocationService.class);
@@ -27,31 +30,31 @@ public class LocationService {
     @Named("LocationModelEntityMapper")
     MapperFacade mapperFacade;
 
-
     @Inject
     @Property("app.name")
     private String applicationName;
 
 
     public AddLocationResponseModel addLocation(AddLocationRequestModel addLocationRequestModel) {
-        logger.debug("LocationService addLocation started ");
+        logger.debug("LocationService addLocation started");
         LocationModel locationModel = mapperFacade.map(addLocationRequestModel, LocationModel.class);
         repository.create(locationModel);
         AddLocationResponseModel addLocationResponseModel = mapperFacade.map(locationModel, AddLocationResponseModel.class);
-        logger.debug("LocationService addLocation finished ");
+        logger.debug("LocationService addLocation finished");
         return addLocationResponseModel;
-
     }
 
-    public List<LocationResponceModel> getAllLocationResponceModel(){
-        logger.debug("LocationService getAllLocationResponceModel started ");
-        List<LocationModel> locationModels =  repository.findAll();
-        List<LocationResponceModel> locationResponceModels =  locationModels.stream().map(locationModel -> mapperFacade.map(locationModel,LocationResponceModel.class)).collect(Collectors.toList());
-        logger.debug("LocationService getAllLocationResponceModel finished ");
-        return  locationResponceModels;
+    public List<LocationResponseModel> getAllLocationResponseModel() {
+        logger.debug("LocationService getAllLocationResponseModel started");
+        List<LocationModel> locationModels = repository.findAll();
+        List<LocationResponseModel> locationResponseModels = locationModels.stream().map(locationModel -> mapperFacade.map(locationModel, LocationResponseModel.class)).collect(Collectors.toList());
+        logger.debug("LocationService getAllLocationResponseModel finished");
+        return locationResponseModels;
     }
 
-    public void deleteLocation(Integer id){
+    public void deleteLocation(Integer id) {
+        logger.debug("LocationService deleteLocation started");
         repository.delete(id);
+        logger.debug("LocationService getAllLocationResponseModel finished");
     }
 }

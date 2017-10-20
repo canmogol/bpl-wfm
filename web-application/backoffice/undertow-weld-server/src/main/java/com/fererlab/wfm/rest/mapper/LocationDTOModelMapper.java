@@ -2,10 +2,10 @@ package com.fererlab.wfm.rest.mapper;
 
 import com.fererlab.wfm.rest.dto.AddLocationRequestDTO;
 import com.fererlab.wfm.rest.dto.AddLocationResponseDTO;
-import com.fererlab.wfm.rest.dto.LocationResponceDTO;
+import com.fererlab.wfm.rest.dto.LocationResponseDTO;
 import com.fererlab.wfm.service.model.AddLocationRequestModel;
 import com.fererlab.wfm.service.model.AddLocationResponseModel;
-import com.fererlab.wfm.service.model.LocationResponceModel;
+import com.fererlab.wfm.service.model.LocationResponseModel;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 
@@ -22,9 +22,9 @@ public class LocationDTOModelMapper extends ConfigurableMapper {
             .byDefault()
             .register();
 
-        factory.classMap(LocationResponceModel.class, LocationResponceDTO.class)
-                .byDefault()
-                .register();
+        factory.classMap(LocationResponseModel.class, LocationResponseDTO.class)
+            .byDefault()
+            .register();
     }
 
 }

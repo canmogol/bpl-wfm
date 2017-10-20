@@ -2,12 +2,12 @@ package com.fererlab.wfm.rest;
 
 import com.fererlab.wfm.rest.dto.AddLocationRequestDTO;
 import com.fererlab.wfm.rest.dto.AddLocationResponseDTO;
-import com.fererlab.wfm.rest.dto.LocationResponceDTO;
+import com.fererlab.wfm.rest.dto.LocationResponseDTO;
 import com.fererlab.wfm.rest.dto.LoginResponseDTO;
 import com.fererlab.wfm.service.LocationService;
 import com.fererlab.wfm.service.model.AddLocationRequestModel;
 import com.fererlab.wfm.service.model.AddLocationResponseModel;
-import com.fererlab.wfm.service.model.LocationResponceModel;
+import com.fererlab.wfm.service.model.LocationResponseModel;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -37,14 +37,14 @@ public class LocationResource {
 
 
     @ApiOperation(
-            value = "add new location",
-            notes = "return new location id.",
-            response = LoginResponseDTO.class
+        value = "add new location",
+        notes = "return new location id.",
+        response = LoginResponseDTO.class
     )
     @ApiResponses(
-            value = {
-                    @ApiResponse(code = 400, message = "Location already added.")
-            }
+        value = {
+            @ApiResponse(code = 400, message = "Location already added.")
+        }
     )
     @POST
     public AddLocationResponseDTO addLocation(AddLocationRequestDTO addLocationRequestDTO) {
@@ -56,32 +56,32 @@ public class LocationResource {
 
 
     @ApiOperation(
-            value = "get all locations",
-            notes = "return all locations on the system.",
-            response = LoginResponseDTO.class
+        value = "get all locations",
+        notes = "return all locations on the system.",
+        response = LoginResponseDTO.class
     )
     @ApiResponses(
-            value = {
-                    @ApiResponse(code = 400, message = "Location not found.")
-            }
+        value = {
+            @ApiResponse(code = 400, message = "Location not found.")
+        }
     )
     @GET
-    public List<LocationResponceDTO> getAllLocationResponceModel() {
-        List<LocationResponceModel> locationModels = service.getAllLocationResponceModel();
-        List<LocationResponceDTO> locationResponceModels = locationModels.stream().map(locationModel -> mapperFacade.map(locationModel, LocationResponceDTO.class)).collect(Collectors.toList());
-        return locationResponceModels;
+    public List<LocationResponseDTO> getAllLocationResponseModel() {
+        List<LocationResponseModel> locationModels = service.getAllLocationResponseModel();
+        List<LocationResponseDTO> locationResponseModels = locationModels.stream().map(locationModel -> mapperFacade.map(locationModel, LocationResponseDTO.class)).collect(Collectors.toList());
+        return locationResponseModels;
     }
 
 
     @ApiOperation(
-            value = "delete location",
-            notes = "recors is deleted using id",
-            response = LoginResponseDTO.class
+        value = "delete location",
+        notes = "recors is deleted using id",
+        response = LoginResponseDTO.class
     )
     @ApiResponses(
-            value = {
-                    @ApiResponse(code = 400, message = "id not found.")
-            }
+        value = {
+            @ApiResponse(code = 400, message = "id not found.")
+        }
     )
     @DELETE
     public void deleteLocation(Integer id) {

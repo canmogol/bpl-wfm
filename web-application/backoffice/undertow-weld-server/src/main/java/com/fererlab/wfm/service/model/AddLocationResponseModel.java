@@ -2,7 +2,7 @@ package com.fererlab.wfm.service.model;
 
 public class AddLocationResponseModel {
 
-   private Integer id;
+    private Integer id;
     private String result;
 
 

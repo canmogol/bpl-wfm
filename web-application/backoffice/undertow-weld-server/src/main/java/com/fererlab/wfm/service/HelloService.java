@@ -3,9 +3,9 @@ package com.fererlab.wfm.service;
 
 import com.fererlab.common.property.Property;
 import com.fererlab.wfm.model.HelloModel;
+import com.fererlab.wfm.repository.HelloCRUDRepository;
 import com.fererlab.wfm.repository.HelloCommandRepository;
 import com.fererlab.wfm.repository.HelloQueryRepository;
-import com.fererlab.wfm.repository.HelloCRUDRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

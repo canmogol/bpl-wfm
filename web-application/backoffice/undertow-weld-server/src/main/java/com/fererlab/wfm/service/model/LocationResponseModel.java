@@ -1,6 +1,6 @@
 package com.fererlab.wfm.service.model;
 
-public class LocationResponceModel {
+public class LocationResponseModel {
 
     private Integer id;
     private String name;

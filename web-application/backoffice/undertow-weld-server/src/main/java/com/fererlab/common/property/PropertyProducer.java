@@ -50,7 +50,7 @@ public class PropertyProducer {
     }
 
 
-    public static String getValue(String key){
+    public static String getValue(String key) {
         return properties.getProperty(key);
     }
 

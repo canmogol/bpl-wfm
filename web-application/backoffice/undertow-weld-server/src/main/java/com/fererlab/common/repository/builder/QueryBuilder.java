@@ -62,9 +62,9 @@ public class QueryBuilder<T extends Model> {
 
     public Optional<T> findOne() {
         final List<T> ts = find();
-        if(ts.isEmpty()){
+        if (ts.isEmpty()) {
             return Optional.empty();
-        }else{
+        } else {
             return Optional.of(ts.get(0));
         }
     }

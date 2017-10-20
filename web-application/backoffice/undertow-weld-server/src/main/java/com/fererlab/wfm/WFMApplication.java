@@ -2,8 +2,8 @@ package com.fererlab.wfm;
 
 import com.fererlab.common.BaseApplication;
 import com.fererlab.wfm.rest.HelloResource;
-import com.fererlab.wfm.rest.LoginResource;
 import com.fererlab.wfm.rest.LocationResource;
+import com.fererlab.wfm.rest.LoginResource;
 
 import java.util.Set;
 
