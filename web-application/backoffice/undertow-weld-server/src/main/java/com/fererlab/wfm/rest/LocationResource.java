@@ -72,4 +72,20 @@ public class LocationResource {
         return locationResponceModels;
     }
 
+
+    @ApiOperation(
+            value = "delete location",
+            notes = "recors is deleted using id",
+            response = LoginResponseDTO.class
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 400, message = "id not found.")
+            }
+    )
+    @DELETE
+    public void deleteLocation(Integer id) {
+        service.deleteLocation(id);
+    }
+
 }

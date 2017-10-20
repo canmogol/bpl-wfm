@@ -50,4 +50,8 @@ public class LocationService {
         logger.debug("LocationService getAllLocationResponceModel finished ");
         return  locationResponceModels;
     }
+
+    public void deleteLocation(Integer id){
+        repository.delete(id);
+    }
 }
