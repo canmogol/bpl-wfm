@@ -1,6 +1,8 @@
-package com.fererlab.wfm.rest.dto;
+package com.fererlab.wfm.rest.mapper;
 
 import com.fererlab.wfm.model.UserModel;
+import com.fererlab.wfm.rest.dto.LoginRequestDTO;
+import com.fererlab.wfm.rest.dto.LoginResponseDTO;
 import com.fererlab.wfm.service.model.LoginRequestModel;
 import com.fererlab.wfm.service.model.LoginResponseModel;
 import ma.glasnost.orika.MapperFactory;

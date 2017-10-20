@@ -1,0 +1,75 @@
+package com.fererlab.wfm.rest;
+
+import com.fererlab.wfm.rest.dto.AddLocationRequestDTO;
+import com.fererlab.wfm.rest.dto.AddLocationResponseDTO;
+import com.fererlab.wfm.rest.dto.LocationResponceDTO;
+import com.fererlab.wfm.rest.dto.LoginResponseDTO;
+import com.fererlab.wfm.service.LocationService;
+import com.fererlab.wfm.service.model.AddLocationRequestModel;
+import com.fererlab.wfm.service.model.AddLocationResponseModel;
+import com.fererlab.wfm.service.model.LocationResponceModel;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import ma.glasnost.orika.MapperFacade;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.util.List;
+import java.util.stream.Collectors;
+
+
+@Path("/location")
+@Api(value = "/location", tags = "location")
+@Produces({MediaType.APPLICATION_JSON})
+@Consumes({MediaType.APPLICATION_JSON})
+public class LocationResource {
+
+    @Inject
+    LocationService service;
+
+    @Inject
+    @Named("LocationDTOModelMapper")
+    MapperFacade mapperFacade;
+
+
+    @ApiOperation(
+            value = "add new location",
+            notes = "return new location id.",
+            response = LoginResponseDTO.class
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 400, message = "Location already added.")
+            }
+    )
+    @POST
+    public AddLocationResponseDTO addLocation(AddLocationRequestDTO addLocationRequestDTO) {
+        AddLocationRequestModel addLocationRequestModel = mapperFacade.map(addLocationRequestDTO, AddLocationRequestModel.class);
+        AddLocationResponseModel addLocationResponseModel = service.addLocation(addLocationRequestModel);
+        AddLocationResponseDTO addLocationResponseDTO = mapperFacade.map(addLocationResponseModel, AddLocationResponseDTO.class);
+        return addLocationResponseDTO;
+    }
+
+
+    @ApiOperation(
+            value = "get all locations",
+            notes = "return all locations on the system.",
+            response = LoginResponseDTO.class
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 400, message = "Location not found.")
+            }
+    )
+    @GET
+    public List<LocationResponceDTO> getAllLocationResponceModel() {
+        List<LocationResponceModel> locationModels = service.getAllLocationResponceModel();
+        List<LocationResponceDTO> locationResponceModels = locationModels.stream().map(locationModel -> mapperFacade.map(locationModel, LocationResponceDTO.class)).collect(Collectors.toList());
+        return locationResponceModels;
+    }
+
+}
