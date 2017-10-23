@@ -12,6 +12,8 @@ import org.jboss.resteasy.spi.ResteasyDeployment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
@@ -51,19 +53,26 @@ public class Server {
         // deploy to server
         server.deploy(deploymentInfo);
 
+
         // add static content to server
         // STATIC_CONTENT_PATH might be a VM parameter or environment variable
         // ex: -DSTATIC_CONTENT_PATH=/home/can/projects/canmogol/bpl-wfm/web-application/backoffice/web/
         // C:\canm\garb\bpl-wfm\web-application\backoffice\web
-        server.addResourcePrefixPath(
-            "/",
-            Handlers.resource(
-                new PathResourceManager(
-                    Paths.get(System.getProperty(STATIC_CONTENT_PATH)),
-                    100
-                )
-            ).setDirectoryListingEnabled(true)
-        );
+        final String contentPathSystemProperty = System.getProperty(STATIC_CONTENT_PATH);
+        if (contentPathSystemProperty != null) {
+            final Path contentPath = Paths.get(contentPathSystemProperty);
+            if (Files.isDirectory(contentPath)) {
+                server.addResourcePrefixPath(
+                    "/",
+                    Handlers.resource(
+                        new PathResourceManager(
+                            contentPath,
+                            100
+                        )
+                    ).setDirectoryListingEnabled(true)
+                );
+            }
+        }
 
         // start server
         server.start(Undertow.builder().addHttpListener(
