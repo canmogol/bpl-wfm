@@ -12,14 +12,14 @@ public class MethodLoggingInterceptor {
     @AroundInvoke
     public Object executeContracts(InvocationContext ctx) throws Exception {
         // create a logger for target class
-        Logger logger = LoggerFactory.getLogger(ctx.getTarget().getClass().getName());
-
-
+        final Logger logger;
         final String className;
         if (ctx.getTarget() instanceof TargetInstanceProxy) {
             TargetInstanceProxy targetInstanceProxy = (TargetInstanceProxy) ctx.getTarget();
+            logger = LoggerFactory.getLogger(targetInstanceProxy.getTargetClass());
             className = targetInstanceProxy.getTargetClass().getName();
         } else {
+            logger = LoggerFactory.getLogger(ctx.getTarget().getClass());
             className = ctx.getTarget().getClass().getName();
         }
 
@@ -32,7 +32,7 @@ public class MethodLoggingInterceptor {
 
         // log method end
         log = String.format("%1s %2s end", className, ctx.getMethod().getName());
-        logger.info(log);
+        logger.debug(log);
 
         // return result
         return result;

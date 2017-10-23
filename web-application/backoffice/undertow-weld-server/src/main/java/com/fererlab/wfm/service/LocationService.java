@@ -1,7 +1,6 @@
 package com.fererlab.wfm.service;
 
 
-import com.fererlab.common.interceptor.MethodLoggingInterceptor;
 import com.fererlab.common.property.Property;
 import com.fererlab.wfm.model.LocationModel;
 import com.fererlab.wfm.repository.LocationCRUDRepository;
@@ -14,11 +13,9 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.interceptor.Interceptors;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Interceptors({MethodLoggingInterceptor.class})
 public class LocationService {
 
     private final static Logger logger = LoggerFactory.getLogger(LocationService.class);

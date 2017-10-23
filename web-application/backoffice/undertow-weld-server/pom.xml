@@ -153,16 +153,11 @@
             <artifactId>swagger-jaxrs</artifactId>
             <version>1.5.16</version>
         </dependency>
-        <!--
-            org.slf4j.impl.SimpleLogger
-            Binding for Simple implementation, which outputs all events to System.err.
-         Only messages of level INFO and higher are printed. This binding may be useful
-         in the context of *SMALL APPLICATIONS*.
-         -->
+        <!-- The logback logger implementation -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.25</version>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+          <version>1.2.3</version>
         </dependency>
         <!-- Hibernate Core -->
         <dependency>

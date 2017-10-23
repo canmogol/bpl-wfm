@@ -1,13 +1,15 @@
 package com.fererlab.wfm.rest;
 
 
+import com.fererlab.common.property.PropertyProducer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @ServerEndpoint("/websocket-pubsub")
 public class PublishSubscribeResource {
@@ -17,7 +19,7 @@ public class PublishSubscribeResource {
     // http://localhost:8080/mvvm/websocket.html
     // ************************************************************************
 
-    private static final Logger logger = Logger.getLogger(PublishSubscribeResource.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(PublishSubscribeResource.class);
     private static final Set<Session> subscribers = Collections.synchronizedSet(new HashSet<>());
 
     @OnMessage
@@ -48,7 +50,7 @@ public class PublishSubscribeResource {
     @OnError
     public void onError(Throwable t) {
         final String errorMessage = String.format("got error at web socket, error: %1s", t);
-        logger.log(Level.SEVERE, errorMessage, t);
+        logger.info(errorMessage, t);
     }
 
 }
