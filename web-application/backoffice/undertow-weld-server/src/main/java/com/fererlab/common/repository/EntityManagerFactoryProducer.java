@@ -17,7 +17,7 @@ public class EntityManagerFactoryProducer {
     private static EntityManagerFactory entityManagerFactory;
 
     @Produces
-    public EntityManagerFactory produceEntityManager(final InjectionPoint ip) {
+    public EntityManagerFactory produceEntityManager() {
         if (entityManagerFactory == null) {
             entityManagerFactory = Persistence.createEntityManagerFactory(persistenceUnit);
         }
