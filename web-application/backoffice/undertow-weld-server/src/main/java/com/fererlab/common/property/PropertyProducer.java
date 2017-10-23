@@ -1,6 +1,9 @@
 package com.fererlab.common.property;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 import java.io.InputStream;
@@ -9,12 +12,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class PropertyProducer {
 
-    private final static Logger logger = Logger.getLogger(PropertyProducer.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(PropertyProducer.class);
 
     public static final String INTERNAL_APPLICATION_PROPERTIES = "/application.properties";
     public static final String APP_PROPERTIES = "APP_PROPERTIES";
@@ -68,7 +69,7 @@ public class PropertyProducer {
                     inputStream = Files.newInputStream(wssdPropertiesFilePath, StandardOpenOption.READ);
                 } else {
                     // otherwise read internal app properties file
-                    logger.log(Level.INFO, "no system property defined with key '" + APP_PROPERTIES + "' will use internal " + INTERNAL_APPLICATION_PROPERTIES);
+                    logger.info("no system property defined with key '" + APP_PROPERTIES + "' will use internal " + INTERNAL_APPLICATION_PROPERTIES);
                     inputStream = PropertyProducer.class.getResourceAsStream(INTERNAL_APPLICATION_PROPERTIES);
                     if (inputStream == null) {
                         throw new RuntimeException("No properties file found");

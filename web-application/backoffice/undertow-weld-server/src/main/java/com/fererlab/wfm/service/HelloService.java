@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class HelloService {
 
-    private final static Logger logger = LoggerFactory.getLogger(HelloService.class);
+    private static final Logger logger = LoggerFactory.getLogger(HelloService.class);
 
     @Inject
     HelloCRUDRepository repository;

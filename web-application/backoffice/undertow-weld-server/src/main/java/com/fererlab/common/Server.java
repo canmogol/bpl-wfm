@@ -9,32 +9,23 @@ import io.undertow.servlet.api.DeploymentInfo;
 import io.undertow.websockets.jsr.WebSocketDeploymentInfo;
 import org.jboss.resteasy.plugins.server.undertow.UndertowJaxrsServer;
 import org.jboss.resteasy.spi.ResteasyDeployment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 
 public class Server {
 
     public static final String STATIC_CONTENT_PATH = "STATIC_CONTENT_PATH";
 
-    private static final Logger logger = Logger.getLogger(Server.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(Server.class);
 
-    static {
-        // set logging to log manager
-        final String loggingProperties = "logging.properties";
-        try {
-            LogManager.getLogManager().readConfiguration(Server.class.getClassLoader().getResourceAsStream(loggingProperties));
-        } catch (IOException e) {
-            logger.severe(String.format("could not load logging file: %1s", loggingProperties));
-        }
-        // initialize property producer, should read properties
-        PropertyProducer.init();
-    }
 
     public static void main(final String[] args) throws ClassNotFoundException {
+
+        // initialize property producer, should read properties
+        PropertyProducer.init();
 
         // create undertow JaxRS server
         UndertowJaxrsServer server = new UndertowJaxrsServer();
