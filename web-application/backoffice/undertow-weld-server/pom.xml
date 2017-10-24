@@ -31,6 +31,7 @@
   </build>
 
   <dependencies>
+
     <!-- TEST -->
     <dependency>
       <groupId>junit</groupId>
@@ -39,79 +40,486 @@
       <scope>test</scope>
     </dependency>
 
+
     <!-- PACK WITH -->
-    <!-- undertow core -->
+    <!-- UNDERTOW CORE -->
     <dependency>
       <groupId>io.undertow</groupId>
       <artifactId>undertow-core</artifactId>
       <version>${undertow.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
-    <!-- undertow servlet -->
+
+    <!-- undertow core > xnio api -->
+    <dependency>
+      <groupId>org.jboss.xnio</groupId>
+      <artifactId>xnio-api</artifactId>
+      <version>3.3.8.Final</version>
+    </dependency>
+
+    <!-- undertow core > xnio nio implementation -->
+    <dependency>
+      <groupId>org.jboss.xnio</groupId>
+      <artifactId>xnio-nio</artifactId>
+      <version>3.3.8.Final</version>
+    </dependency>
+
+
+    <!-- UNDERTOW SERVLET -->
     <dependency>
       <groupId>io.undertow</groupId>
       <artifactId>undertow-servlet</artifactId>
       <version>${undertow.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
-    <!-- undertow websocket -->
+
+    <!-- undertow servlet > jboss servlet api -->
+    <dependency>
+      <groupId>org.jboss.spec.javax.servlet</groupId>
+      <artifactId>jboss-servlet-api_3.1_spec</artifactId>
+      <version>1.0.1.Final</version>
+    </dependency>
+
+
+    <!-- UNDERTOW WEBSOCKET -->
     <dependency>
       <groupId>io.undertow</groupId>
       <artifactId>undertow-websockets-jsr</artifactId>
       <version>${undertow.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
-    <!-- RESTEasy Undertow Integration -->
+
+    <!-- undertow websocket - jboss websocket api -->
+    <dependency>
+      <groupId>org.jboss.spec.javax.websocket</groupId>
+      <artifactId>jboss-websocket-api_1.1_spec</artifactId>
+      <version>1.1.2.Final</version>
+    </dependency>
+
+
+    <!-- RESTEASY -->
+    <!-- resteasy undertow integration -->
     <dependency>
       <groupId>org.jboss.resteasy</groupId>
       <artifactId>resteasy-undertow</artifactId>
       <version>3.1.4.Final</version>
+      <exclusions>
+        <exclusion>
+          <groupId>*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
-    <!-- RESTEasy-cdi -->
+
+    <!-- resteasy jaxrs -->
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-jaxrs</artifactId>
+      <version>3.1.4.Final</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+
+    <!--RESTEASY CLIENT -->
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-client</artifactId>
+      <version>3.1.4.Final</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!--resteasy client > jaxrs services implementation -->
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-jaxrs-services</artifactId>
+      <version>3.1.4.Final</version>
+    </dependency>
+
+    <!-- resteasy client > apache httpclient-->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5.2</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- RESTEASY-CDI -->
     <dependency>
       <groupId>org.jboss.resteasy</groupId>
       <artifactId>resteasy-cdi</artifactId>
       <version>3.1.4.Final</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
+
+    <!-- resteasy-cdi > The Java(TM) API for RESTFUL Web Services -->
+    <dependency>
+      <groupId>org.jboss.spec.javax.ws.rs</groupId>
+      <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+      <version>1.0.1.Beta1</version>
+    </dependency>
+
+    <!-- RESTEASY -->
     <!-- RESTEasy Jackson Provider -->
     <dependency>
       <groupId>org.jboss.resteasy</groupId>
       <artifactId>resteasy-jackson2-provider</artifactId>
       <version>3.1.4.Final</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
+
+    <!-- resteasy-jackson2-provider > jackson-core -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.8.9</version>
+    </dependency>
+
+    <!-- resteasy-jackson2-provider > jackson-databind -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.8.9</version>
+    </dependency>
+
+    <!-- resteasy-jackson2-provider > jackson-annotations -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>2.8.9</version>
+    </dependency>
+
+    <!-- resteasy-jackson2-provider > jackson-jaxrs-json-provider -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.jaxrs</groupId>
+      <artifactId>jackson-jaxrs-json-provider</artifactId>
+      <version>2.8.9</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- jackson-jaxrs-json-provider > jackson-jaxrs-base -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.jaxrs</groupId>
+      <artifactId>jackson-jaxrs-base</artifactId>
+      <version>2.8.9</version>
+    </dependency>
+
+    <!-- jackson-jaxrs-json-provider > jackson-module-jaxb-annotations -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.module</groupId>
+      <artifactId>jackson-module-jaxb-annotations</artifactId>
+      <version>2.8.9</version>
+    </dependency>
+
     <!-- RESTEasy Multipart Provider -->
     <dependency>
       <groupId>org.jboss.resteasy</groupId>
       <artifactId>resteasy-multipart-provider</artifactId>
       <version>3.1.4.Final</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
-    <!-- The javax.inject API -->
+    <!-- resteasy-multipart-provider > javax.mail -->
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>javax.mail</artifactId>
+      <version>1.6.0</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+
+    <!-- WELD SERVLET -->
+    <dependency>
+      <groupId>org.jboss.weld.servlet</groupId>
+      <artifactId>weld-servlet-core</artifactId>
+      <version>3.0.1.Final</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- weld-servlet-core > weld-web -->
+    <dependency>
+      <groupId>org.jboss.weld.module</groupId>
+      <artifactId>weld-web</artifactId>
+      <version>3.0.1.Final</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- weld-servlet-core > weld-environment-common -->
+    <dependency>
+      <groupId>org.jboss.weld.environment</groupId>
+      <artifactId>weld-environment-common</artifactId>
+      <version>3.0.1.Final</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- weld-environment-common > weld-core-impl -->
+    <dependency>
+      <groupId>org.jboss.weld</groupId>
+      <artifactId>weld-core-impl</artifactId>
+      <version>3.0.1.Final</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- weld-core-impl > weld-spi -->
+    <dependency>
+      <groupId>org.jboss.weld</groupId>
+      <artifactId>weld-spi</artifactId>
+      <version>3.0.SP1</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- weld-spi > weld-api -->
+    <dependency>
+      <groupId>org.jboss.weld</groupId>
+      <artifactId>weld-api</artifactId>
+      <version>3.0.SP1</version>
+    </dependency>
+
+    <!-- weld-spi > cdi-api -->
+    <dependency>
+      <groupId>javax.enterprise</groupId>
+      <artifactId>cdi-api</artifactId>
+      <version>2.0</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- cdi-api > javax.el-api -->
+    <dependency>
+      <groupId>javax.el</groupId>
+      <artifactId>javax.el-api</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+
+    <!-- cdi-api > javax.interceptor-api -->
+    <dependency>
+      <groupId>javax.interceptor</groupId>
+      <artifactId>javax.interceptor-api</artifactId>
+      <version>1.2</version>
+    </dependency>
+
+    <!-- weld-core-impl > jboss-classfilewriter -->
+    <dependency>
+      <groupId>org.jboss.classfilewriter</groupId>
+      <artifactId>jboss-classfilewriter</artifactId>
+      <version>1.1.2.Final</version>
+    </dependency>
+
+    <!-- weld-core-impl > javax.annotation-api -->
+    <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>javax.annotation-api</artifactId>
+      <version>1.3</version>
+    </dependency>
+
+    <!-- weld-core-impl > jboss-el-api_3.0_spec -->
+    <dependency>
+      <groupId>org.jboss.spec.javax.el</groupId>
+      <artifactId>jboss-el-api_3.0_spec</artifactId>
+      <version>1.0.7.Final</version>
+    </dependency>
+
+    <!-- weld-core-impl > jboss-logging -->
+    <dependency>
+      <groupId>org.jboss.logging</groupId>
+      <artifactId>jboss-logging</artifactId>
+      <version>3.2.1.Final</version>
+    </dependency>
+
+    <!-- weld-core-impl > jboss-interceptors-api_1.2_spec -->
+    <dependency>
+      <groupId>org.jboss.spec.javax.interceptor</groupId>
+      <artifactId>jboss-interceptors-api_1.2_spec</artifactId>
+      <version>1.0.0.Final</version>
+    </dependency>
+
+
+    <!-- JAVAX.INJECT API -->
     <dependency>
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
       <version>1</version>
     </dependency>
-    <!-- Weld Servlet -->
-    <dependency>
-      <groupId>org.jboss.weld.servlet</groupId>
-      <artifactId>weld-servlet-core</artifactId>
-      <version>3.0.1.Final</version>
-    </dependency>
+
+
     <!-- SERVLET JSP API -->
     <dependency>
       <groupId>javax.servlet.jsp</groupId>
       <artifactId>javax.servlet.jsp-api</artifactId>
       <version>2.3.2-b02</version>
     </dependency>
-    <!-- Swagger JaxRS -->
+
+
+    <!-- SWAGGER JAXRS -->
     <dependency>
       <groupId>io.swagger</groupId>
       <artifactId>swagger-jaxrs</artifactId>
       <version>1.5.16</version>
     </dependency>
+
+    <!-- swagger-jaxrs > jsr311-api -->
+    <dependency>
+      <groupId>javax.ws.rs</groupId>
+      <artifactId>jsr311-api</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+
+    <!-- swagger-jaxrs > reflections -->
+    <dependency>
+      <groupId>org.reflections</groupId>
+      <artifactId>reflections</artifactId>
+      <version>0.9.11</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- reflections > javassist -->
+    <dependency>
+      <groupId>org.javassist</groupId>
+      <artifactId>javassist</artifactId>
+      <optional>false</optional> <!-- case: when not actually scanning with javassist or if using {@link Reflections.collect()} -->
+      <version>3.21.0-GA</version>
+    </dependency>
+
+    <!-- swagger-jaxrs > guava -->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>20.0</version>
+    </dependency>
+
+    <!-- swagger-jaxrs > swagger-core -->
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-core</artifactId>
+      <version>1.5.16</version>
+
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- swagger-core > swagger-models -->
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-models</artifactId>
+      <version>1.5.16</version>
+    </dependency>
+
+    <!-- swagger-core > jackson-dataformat-yaml -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-yaml</artifactId>
+      <version>2.8.9</version>
+    </dependency>
+
+    <!-- swagger-core > commons-lang3 -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.2.1</version>
+    </dependency>
+
+
+    <!-- LOGBACK -->
     <!-- The logback logger implementation -->
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <version>1.2.3</version>
     </dependency>
+
+
+    <!--HIBERNATE -->
     <!-- Hibernate Core -->
     <dependency>
       <groupId>org.hibernate</groupId>
@@ -130,24 +538,34 @@
       <artifactId>hibernate-jpa-2.1-api</artifactId>
       <version>1.0.0.Final</version>
     </dependency>
-    <!-- Java Annotation Indexer -->
+
+
+    <!-- JAVA ANNOTATION INDEXER -->
     <dependency>
       <groupId>org.jboss</groupId>
       <artifactId>jandex</artifactId>
       <version>2.0.3.Final</version>
     </dependency>
-    <!-- H2 Database-->
+
+
+    <!-- H2 DATABASE -->
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <version>1.4.196</version>
     </dependency>
+
+
+    <!-- ORIKA -->
     <!-- Orika Map/Factory/Converter -->
     <dependency>
       <groupId>ma.glasnost.orika</groupId>
       <artifactId>orika-core</artifactId>
       <version>1.5.2</version>
     </dependency>
+
+
+    <!-- LOMBOK -->
     <!-- Java API Improvements - LOMBOK -->
     <dependency>
       <groupId>org.projectlombok</groupId>
