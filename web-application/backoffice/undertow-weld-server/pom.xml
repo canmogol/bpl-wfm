@@ -104,7 +104,7 @@
       </exclusions>
     </dependency>
 
-    <!-- undertow websocket - jboss websocket api -->
+    <!-- undertow websocket jsr > jboss websocket api -->
     <dependency>
       <groupId>org.jboss.spec.javax.websocket</groupId>
       <artifactId>jboss-websocket-api_1.1_spec</artifactId>
@@ -267,6 +267,7 @@
         </exclusion>
       </exclusions>
     </dependency>
+
     <!-- resteasy-multipart-provider > javax.mail -->
     <dependency>
       <groupId>com.sun.mail</groupId>
@@ -353,7 +354,7 @@
       <version>3.0.SP1</version>
     </dependency>
 
-    <!-- weld-spi > cdi-api -->
+    <!-- weld-api > cdi-api -->
     <dependency>
       <groupId>javax.enterprise</groupId>
       <artifactId>cdi-api</artifactId>
@@ -463,7 +464,8 @@
     <dependency>
       <groupId>org.javassist</groupId>
       <artifactId>javassist</artifactId>
-      <optional>false</optional> <!-- case: when not actually scanning with javassist or if using {@link Reflections.collect()} -->
+      <optional>false
+      </optional> <!-- case: when not actually scanning with javassist or if using {@link Reflections.collect()} -->
       <version>3.21.0-GA</version>
     </dependency>
 
@@ -479,7 +481,6 @@
       <groupId>io.swagger</groupId>
       <artifactId>swagger-core</artifactId>
       <version>1.5.16</version>
-
       <exclusions>
         <exclusion>
           <artifactId>*</artifactId>
@@ -493,6 +494,27 @@
       <groupId>io.swagger</groupId>
       <artifactId>swagger-models</artifactId>
       <version>1.5.16</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- swagger-models > slf4j-api -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.22</version>
+    </dependency>
+
+    <!-- swagger-models > swagger-annotations -->
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>1.5.16</version>
+      <scope>compile</scope>
     </dependency>
 
     <!-- swagger-core > jackson-dataformat-yaml -->
@@ -500,6 +522,19 @@
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-yaml</artifactId>
       <version>2.8.9</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- jackson-dataformat-yaml > snakeyaml -->
+    <dependency>
+      <groupId>org.yaml</groupId>
+      <artifactId>snakeyaml</artifactId>
+      <version>1.17</version>
     </dependency>
 
     <!-- swagger-core > commons-lang3 -->
@@ -516,8 +551,21 @@
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <version>1.2.3</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
+    <!-- logback-classic > logback-core -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>1.2.3</version>
+      <scope>compile</scope>
+    </dependency>
 
     <!--HIBERNATE -->
     <!-- Hibernate Core -->
@@ -525,14 +573,78 @@
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
       <version>4.3.10.Final</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
-    <!-- Hibernate EM -->
+
+    <!-- hibernate-core > jboss-logging-annotations -->
+    <dependency>
+      <groupId>org.jboss.logging</groupId>
+      <artifactId>jboss-logging-annotations</artifactId>
+      <version>1.2.0.Beta1</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- hibernate-core > hibernate-commons-annotations -->
+    <dependency>
+      <groupId>org.hibernate.common</groupId>
+      <artifactId>hibernate-commons-annotations</artifactId>
+      <version>4.0.5.Final</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- hibernate-core > antlr -->
+    <dependency>
+      <groupId>antlr</groupId>
+      <artifactId>antlr</artifactId>
+      <version>2.7.7</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- hibernate-core > jboss-transaction-api_1.2_spec -->
+    <dependency>
+      <groupId>org.jboss.spec.javax.transaction</groupId>
+      <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+      <version>1.0.0.Final</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- hibernate-core > dom4j -->
+    <dependency>
+      <groupId>dom4j</groupId>
+      <artifactId>dom4j</artifactId>
+      <version>1.6.1</version>
+      <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- dom4j > xml-apis -->
+    <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
+      <version>1.0.b2</version>
+      <scope>compile</scope>
+    </dependency>
+
+
+    <!-- HIBERNATE EM -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-entitymanager</artifactId>
       <version>4.3.10.Final</version>
     </dependency>
-    <!-- Hibernate JPA API -->
+
+
+    <!-- HIBERNATE JPA API -->
     <dependency>
       <groupId>org.hibernate.javax.persistence</groupId>
       <artifactId>hibernate-jpa-2.1-api</artifactId>
@@ -572,6 +684,52 @@
       <artifactId>lombok</artifactId>
       <version>1.16.18</version>
       <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- lombok > paranamer -->
+    <dependency>
+      <groupId>com.thoughtworks.paranamer</groupId>
+      <artifactId>paranamer</artifactId>
+      <version>2.8</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- lombok > concurrentlinkedhashmap-lru -->
+    <dependency>
+      <groupId>com.googlecode.concurrentlinkedhashmap</groupId>
+      <artifactId>concurrentlinkedhashmap-lru</artifactId>
+      <version>1.4.2</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- lombok > java-sizeof -->
+    <dependency>
+      <groupId>com.carrotsearch</groupId>
+      <artifactId>java-sizeof</artifactId>
+      <version>0.0.4</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- lombok > janino -->
+    <dependency>
+      <groupId>org.codehaus.janino</groupId>
+      <artifactId>janino</artifactId>
+      <version>2.7.5</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <!-- janino > commons-compiler -->
+    <dependency>
+      <groupId>org.codehaus.janino</groupId>
+      <artifactId>commons-compiler</artifactId>
+      <version>2.7.5</version>
+      <scope>compile</scope>
     </dependency>
 
   </dependencies>
